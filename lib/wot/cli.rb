@@ -12,7 +12,7 @@ class Wot::CLI
     end
 
     def welcome 
-        puts <<-'EOF'
+        title = <<-'EOF'
         __        ___               _  ___   __ _____ _                
         \ \      / / |__   ___  ___| |/ _ \ / _|_   _(_)_ __ ___   ___ 
          \ \ /\ / /| '_ \ / _ \/ _ \ | | | | |_  | | | | '_ ` _ \ / _ \
@@ -25,7 +25,7 @@ class Wot::CLI
               \____\___/|_| |_| |_| .__/ \__,_|_| |_|_|\___/|_| |_|
                                   |_|                              
         EOF
-
+        puts title.colorize(:blue)
         puts <<-DOC
 
         Welcome to the Wheel Of Time Companion Ruby CLI Gem to Robert
@@ -46,7 +46,7 @@ class Wot::CLI
         while true
             list_books
             
-            puts <<-DOC
+            which_book = <<-DOC
 
             *******************************************************
             *                                                     *
@@ -58,6 +58,7 @@ class Wot::CLI
             *******************************************************
             
             DOC
+            puts which_book.colorize(:light_blue)
             input = gets.strip.downcase
             break if input == "exit"
             selection = input.to_i
@@ -92,21 +93,24 @@ class Wot::CLI
         input = nil
         while true 
            
-            puts <<-DOC
+            which_chapter = <<-DOC
+
+
 
             *******************************************************
             *                                                     *
             *                   CHAPTER SUMMARY                   *
             *                                                     *
             *    Enter the number of the chapter you would like   *
-            *       a summary on or type 'back' to go to the      *
+            *       a summary on or type 'exit' to go to the      *
             *                    previous menu.                   *
             *                                                     *
             *******************************************************
             
             DOC
+            puts which_chapter.colorize(:light_blue)
             input = gets.strip.downcase
-            break if input == "back"
+            break if input == "exit"
             chapter_number = input.to_i
 
             if book == 0
@@ -123,7 +127,7 @@ class Wot::CLI
     end
 
     def goodbye 
-        puts <<-'EOF'
+        bye = <<-'EOF'
                          _   _                          
                         | | | | __ _ _ __  _ __  _   _  
                         | |_| |/ _` | '_ \| '_ \| | | | 
@@ -137,6 +141,7 @@ class Wot::CLI
                     |_| \_\___|\__,_|\__,_|_|_| |_|\__, (_|_)
                                                    |___/     
         EOF
+        puts bye.colorize(:blue)
     end
 
 
