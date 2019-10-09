@@ -4,6 +4,7 @@ class Wot::CLI
 
     def call
         Wot::Scraper.get_book_titles
+        # scrape book 0 summary
         Wot::Scraper.make_books
         welcome
         book_menu
@@ -58,68 +59,8 @@ class Wot::CLI
             
             DOC
             input = gets.strip.downcase
-            case input
-            when "0"
-                book = Wot::Book.find(0).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(0)
-            when "1"
-                book = Wot::Book.find(1).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(1)
-            when "2"
-                book = Wot::Book.find(2).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(2)
-            when "3"
-                book = Wot::Book.find(3).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(3)
-            when "4"
-                book = Wot::Book.find(4).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(4)
-            when "5"
-                book = Wot::Book.find(5).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(5)
-            when "6"
-                book = Wot::Book.find(6).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(6)
-            when "7"
-                book = Wot::Book.find(7).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(7)
-            when "8"
-                book = Wot::Book.find(8).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(8)
-            when "9"
-                book = Wot::Book.find(9).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(9)
-            when "10"
-                book = Wot::Book.find(10).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(10)
-            when "11"
-                book = Wot::Book.find(11).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(11)
-            when "12"
-                book = Wot::Book.find(12).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(12)
-            when "13"
-                book = Wot::Book.find(13).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(13)
-            when "14"
-                book = Wot::Book.find(14).chapters
-                book.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-                summary_menu(14)
-            end
+            selection = input.to_i
+            summary_menu(selection)
         end
 
     end
@@ -132,26 +73,19 @@ class Wot::CLI
 
         DOC
         @books = Wot::Book.all
-        @books.each.with_index do |book, i|
-        counter = 0
-            while counter != 10
-                puts "        [  #{i} ] #{book.name}"
-            end
-            while counter != 15
-                puts "        [ #{i} ] #{book.name}"
-            end
-        end
+        @books.each.with_index {|book, i| puts "        [  #{i} ] #{book.name}"}
     end
 
     def summary_menu(book)
         selection = Wot::Book.find(book)
         puts <<-DOC
         
-        You selected: #{selection}
+        You selected: #{selection.name}
 
         DOC
-        selection.chapters.each.with_index {|chapter, i| puts "        [ #{i+1}] #{chapter}"}
-    
+        selection.chapters.each.with_index {|chapter, i| puts "        [ #{i+1} ] #{chapter}"}
+        
+        input = nil
         while input != "back"
            
             puts <<-DOC
@@ -168,7 +102,18 @@ class Wot::CLI
             
             DOC
             input = gets.strip.downcase
-            Wot::Book.find(selection).summary[input+1].each {|summary| puts "", "    #{summary}" }
+            chapter_number = input.to_i
+
+            if book == 0
+                Wot::Scraper.book_0_summary(chapter_number)
+                chapter = selection.summary[chapter_number-1]
+                chapter.each {|summary| puts "", "    #{summary}" }
+
+            end
+            if book == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
+                Wot::Scraper.comming_soon
+            end
+            
         end
     end
 
