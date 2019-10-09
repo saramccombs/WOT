@@ -43,7 +43,7 @@ class Wot::CLI
 
     def book_menu
         input = nil
-        while input != "exit"
+        while true
             list_books
             
             puts <<-DOC
@@ -59,6 +59,7 @@ class Wot::CLI
             
             DOC
             input = gets.strip.downcase
+            break if input == "exit"
             selection = input.to_i
             summary_menu(selection)
         end
@@ -86,7 +87,7 @@ class Wot::CLI
         selection.chapters.each.with_index {|chapter, i| puts "        [ #{i+1} ] #{chapter}"}
         
         input = nil
-        while input != "back"
+        while true 
            
             puts <<-DOC
 
@@ -102,6 +103,7 @@ class Wot::CLI
             
             DOC
             input = gets.strip.downcase
+            break if input == "back"
             chapter_number = input.to_i
 
             if book == 0
@@ -109,9 +111,9 @@ class Wot::CLI
                 chapter = selection.summary[chapter_number-1]
                 chapter.each {|summary| puts "", "    #{summary}" }
 
-            end
-            if book == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
-                Wot::Scraper.comming_soon
+            elsif book == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
+                output = Wot::Scraper.comming_soon
+                output.each {|msg| puts msg}
             end
             
         end
