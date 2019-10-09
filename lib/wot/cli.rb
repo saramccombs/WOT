@@ -4,7 +4,6 @@ class Wot::CLI
 
     def call
         Wot::Scraper.get_book_titles
-        # scrape book 0 summary
         Wot::Scraper.make_books
         welcome
         book_menu
