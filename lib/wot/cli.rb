@@ -74,7 +74,8 @@ class Wot::CLI
 
         DOC
         @books = Wot::Book.all
-        @books.each.with_index {|book, i| puts "        [  #{i} ] #{book.name}"}
+        @books.each.with_index {|book, i| puts "[".rjust(20) + i.to_s.rjust(5) + "]".rjust(3) + book.name}
+        # @books.each.with_index {|book, i| puts "        [  #{i}  ] #{book.name}"}
     end
 
     def summary_menu(book)
