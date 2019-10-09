@@ -84,7 +84,10 @@ class Wot::CLI
         You selected: #{selection.name}
 
         DOC
-        selection.chapters.each.with_index {|chapter, i| puts "        [ #{i+1} ] #{chapter}"}
+        selection.chapters.each.with_index do |chapter, i| 
+            i += 1
+            puts "[".rjust(20) + i.to_s.rjust(4) + "]".rjust(3) + "  " + chapter
+        end
         
         input = nil
         while true 
