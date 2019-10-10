@@ -61,7 +61,11 @@ class Wot::CLI
             input = gets.strip.downcase
             break if input == "exit"
             selection = input.to_i
-            summary_menu(selection)
+            case selection 
+            when 0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
+                summary_menu(selection)
+            end
+            error 
         end
 
     end
@@ -109,17 +113,21 @@ class Wot::CLI
             DOC
             puts which_chapter.colorize(:light_blue)
             input = gets.strip.downcase
-            break if input == "exit"
-            chapter_number = input.to_i
+            if input == "exit"
+                break
+            elsif input.to_i < selection.number_chs || input.to_i > selection.number_chs
+                error
+            else
+                chapter_number = input.to_i
+                if book == 0
+                    Wot::Scraper.book_0_summary(chapter_number)
+                    chapter = selection.summary[chapter_number-1]
+                    chapter.each {|summary| puts "", "    #{summary}" }
 
-            if book == 0
-                Wot::Scraper.book_0_summary(chapter_number)
-                chapter = selection.summary[chapter_number-1]
-                chapter.each {|summary| puts "", "    #{summary}" }
-
-            elsif book == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
-                output = Wot::Scraper.comming_soon
-                output.each {|msg| puts msg}
+                elsif book == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
+                    output = Wot::Scraper.comming_soon
+                    output.each {|msg| puts msg}
+                end
             end
             
         end
@@ -141,6 +149,11 @@ class Wot::CLI
                                                    |___/     
         EOF
         puts bye.colorize(:blue)
+    end
+
+    def error
+        error_msg = "Invalid input, please try again."
+        puts error_msg.colorize(:red)
     end
 
 
