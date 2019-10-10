@@ -245,7 +245,11 @@ class Wot::Scraper
     # Chapter summary level scrapes
     def self.scrape_summary(input, counter_start, counter_end)
         summary = []
-        ch_summary_url = "https://library.tarvalon.net/index.php?title=New_Spring:_Chapter_#{input}"
+        if input == 27
+            ch_summary_url = "https://library.tarvalon.net/index.php?title=New_Spring:_Epilogue"
+        else
+            ch_summary_url = "https://library.tarvalon.net/index.php?title=New_Spring:_Chapter_#{input}"
+        end
         doc = Nokogiri::HTML(open(ch_summary_url))
         counter = counter_start
         while counter != counter_end
@@ -270,7 +274,7 @@ class Wot::Scraper
         when 2
             book.summary[1] ||= scrape_summary(2, 13, 19)
         when 3
-            book.summary[2] ||= scrape_summary(3, 13, 17)
+            book.summary[2] ||= scrape_summary(3, 13, 18)
         when 4
             book.summary[3] ||= scrape_summary(4, 13, 17)
         when 5
@@ -306,19 +310,19 @@ class Wot::Scraper
         when 20
             book.summary[19] ||= scrape_summary(20, 13, 16)
         when 21
-            book.summary[20] ||= scrape_summary(21, 13, 17)
+            book.summary[20] ||= scrape_summary(21, 14, 17)
         when 22
-            book.summary[21] ||= scrape_summary(22, 13, 17)
+            book.summary[21] ||= scrape_summary(22, 13, 20)
         when 23
             book.summary[22] ||= scrape_summary(23, 13, 17)
         when 24
-            book.summary[23] ||= scrape_summary(24, 13, 17)
+            book.summary[23] ||= scrape_summary(24, 13, 18)
         when 25
-            book.summary[24] ||= scrape_summary(25, 13, 17)
+            book.summary[24] ||= scrape_summary(25, 13, 21)
         when 26
-            book.summary[25] ||= scrape_summary(26, 13, 17)
+            book.summary[25] ||= scrape_summary(26, 14, 17)
         when 27
-            book.summary[26] ||= scrape_summary(27, 13, 17)
+            book.summary[26] ||= scrape_summary(27, 13, 18)
         end
 
 

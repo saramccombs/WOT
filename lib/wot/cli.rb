@@ -59,13 +59,14 @@ class Wot::CLI
             DOC
             puts which_book.colorize(:light_blue)
             input = gets.strip.downcase
-            break if input == "exit"
-            selection = input.to_i
-            case selection 
-            when 0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14
+            if input == "exit"
+                break
+            elsif input.to_i > 0 || input.to_i < 14
+                selection = input.to_i
                 summary_menu(selection)
+            else
+                error
             end
-            error 
         end
 
     end
@@ -115,7 +116,7 @@ class Wot::CLI
             input = gets.strip.downcase
             if input == "exit"
                 break
-            elsif input.to_i < selection.number_chs || input.to_i > selection.number_chs
+            elsif input.to_i > selection.number_chs || input.to_i < 0
                 error
             else
                 chapter_number = input.to_i
