@@ -12,212 +12,74 @@ class Wot::Scraper
     end
 
     # Chapter title level scrapes
+
+    def self.scrape_chapters(url, num_chapters)
+        chapters = []
+        doc = Nokogiri::HTML(open(url))
+        counter = 1
+        while counter != (num_chapters + 1)
+            chapters << doc.search("#mw-content-text td:nth-child(1) li:nth-child(#{counter}) a").text
+            counter += 1
+        end
+        counter = 1
+        while counter != (num_chapters + 1)
+            chapters << doc.search("#mw-content-text td:nth-child(2) li:nth-child(#{counter}) a").text
+            counter += 1
+        end
+        chapters.delete("")
+        chapters
+    end
+
     def self.book_0_chapters
-        book_0_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=New_Spring:_Chapter_Summaries"))
-        counter = 1
-        while counter != 15
-            book_0_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=14
-            book_0_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_0_chapters
+        book_0_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=New_Spring:_Chapter_Summaries", 27)
     end
 
     def self.book_1_chapters
-        book_1_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Eye_of_the_World:_Chapter_Summaries"))
-        counter = 1
-        while counter != 28
-            book_1_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=28
-            book_1_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_1_chapters
+        book_1_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Eye_of_the_World:_Chapter_Summaries", 55)
     end
 
     def self.book_2_chapters
-        book_2_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Great_Hunt:_Chapter_Summaries"))
-        counter = 1
-        while counter != 27
-            book_2_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=26
-            book_2_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_2_chapters
+        book_2_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Great_Hunt:_Chapter_Summaries", 51)
     end
 
     def self.book_3_chapters
-        book_3_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Dragon_Reborn:_Chapter_Summaries"))
-        counter = 1
-        while counter != 30
-            book_3_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=29
-            book_3_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_3_chapters
+        book_3_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Dragon_Reborn:_Chapter_Summaries", 57)
     end
 
     def self.book_4_chapters
-        book_4_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Shadow_Rising:_Chapter_Summaries"))
-        counter = 1
-        while counter != 30
-            book_4_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=30
-            book_4_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_4_chapters
+        book_4_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Shadow_Rising:_Chapter_Summaries", 58)
     end
 
     def self.book_5_chapters
-        book_5_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Fires_of_Heaven:_Chapter_Summaries"))
-        counter = 1
-        while counter != 30
-            book_5_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=29
-            book_5_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_5_chapters
+        book_5_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Fires_of_Heaven:_Chapter_Summaries", 57)
     end
 
     def self.book_6_chapters
-        book_6_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=Lord_of_Chaos:_Chapter_Summaries"))
-        counter = 1
-        while counter != 30
-            book_6_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=29
-            book_6_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_6_chapters
+        book_6_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=Lord_of_Chaos:_Chapter_Summaries", 57)
     end
 
     def self.book_7_chapters
-        book_7_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=A_Crown_of_Swords:_Chapter_Summaries"))
-        counter = 1
-        while counter != 22
-            book_7_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=22
-            book_7_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_7_chapters
+        book_7_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=A_Crown_of_Swords:_Chapter_Summaries", 42)
     end
 
     def self.book_8_chapters
-        book_8_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Path_of_Daggers:_Chapter_Summaries"))
-        counter = 1
-        while counter != 17
-            book_8_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=17
-            book_8_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_8_chapters
+        book_8_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Path_of_Daggers:_Chapter_Summaries", 32)
     end
 
     def self.book_9_chapters
-        book_9_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=Winter%27s_Heart:_Chapter_Summaries"))
-        counter = 1
-        while counter != 19
-            book_9_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=19
-            book_9_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_9_chapters
+        book_9_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=Winter%27s_Heart:_Chapter_Summaries", 36)
     end
 
     def self.book_10_chapters
-        book_10_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=Crossroads_of_Twilight:_Chapter_Summaries"))
-        counter = 1
-        while counter != 17
-            book_10_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=17
-            book_10_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_10_chapters
+        book_10_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=Crossroads_of_Twilight:_Chapter_Summaries", 32)
     end
 
     def self.book_11_chapters
-        book_11_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=Knife_of_Dreams:_Chapter_Summaries"))
-        counter = 1
-        while counter != 21
-            book_11_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=20
-            book_11_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_11_chapters
+        book_11_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=Knife_of_Dreams:_Chapter_Summaries", 39)
     end
 
     def self.book_12_chapters
-        book_12_chapters = []
-        doc = Nokogiri::HTML(open("https://library.tarvalon.net/index.php?title=The_Gathering_Storm:_Chapter_Summaries"))
-        counter = 1
-        while counter != 27
-            book_12_chapters << doc.search("div#mw-content-text table td:nth-child(1) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        counter = 1
-        while counter !=27
-            book_12_chapters << doc.search("div#mw-content-text table td:nth-child(2) ul li:nth-child(#{counter}) a").text
-            counter += 1
-        end
-        book_12_chapters
+        book_12_chapters = scrape_chapters("https://library.tarvalon.net/index.php?title=The_Gathering_Storm:_Chapter_Summaries", 52)
     end
 
     def self.book_13_chapters
@@ -324,10 +186,7 @@ class Wot::Scraper
         when 27
             book.summary[26] ||= scrape_summary(27, 13, 18)
         end
-
-
     end
-
 
     def self.comming_soon
         cs_summary = []
