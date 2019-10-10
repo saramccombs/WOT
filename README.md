@@ -1,8 +1,6 @@
-# Wot
+# WOT
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/wot`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome!! This CLI Ruby Gem provides chapter summaries for each of the books within Robert Jordan's Wheel of Time series.
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Execute the gem via `$ ./bin/wot` and follow the on-screen prompts.
+
+To exit the program, type `exit` when prompted for input.
 
 ## Development
 
