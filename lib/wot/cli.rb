@@ -61,7 +61,7 @@ class Wot::CLI
             input = gets.strip.downcase
             if input == "exit"
                 break
-            elsif input.to_i > 0 || input.to_i < 14
+            elsif input.to_i >= 0 && input.to_i <= 14
                 selection = input.to_i
                 summary_menu(selection)
             else
