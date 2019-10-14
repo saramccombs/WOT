@@ -11,7 +11,7 @@ class Wot::CLI
     end
 
     def welcome 
-        title = <<-'EOF'
+        title = <<-'TITLE'
         __        ___               _  ___   __ _____ _                
         \ \      / / |__   ___  ___| |/ _ \ / _|_   _(_)_ __ ___   ___ 
          \ \ /\ / /| '_ \ / _ \/ _ \ | | | | |_  | | | | '_ ` _ \ / _ \
@@ -23,7 +23,7 @@ class Wot::CLI
              | |__| (_) | | | | | | |_) | (_| | | | | | (_) | | | |
               \____\___/|_| |_| |_| .__/ \__,_|_| |_|_|\___/|_| |_|
                                   |_|                              
-        EOF
+        TITLE
         puts title.colorize(:blue)
         puts <<-DOC
 
@@ -45,7 +45,7 @@ class Wot::CLI
         while true
             list_books
             
-            which_book = <<-DOC
+            which_book = <<-BOOK
 
             *******************************************************
             *                                                     *
@@ -56,7 +56,7 @@ class Wot::CLI
             *                                                     *
             *******************************************************
             
-            DOC
+            BOOK
             puts which_book.colorize(:light_blue)
             input = gets.strip.downcase
             if input == "exit"
@@ -97,7 +97,7 @@ class Wot::CLI
         input = nil
         while true 
            
-            which_chapter = <<-DOC
+            which_chapter = <<-CHAPTER
 
 
 
@@ -111,7 +111,7 @@ class Wot::CLI
             *                                                     *
             *******************************************************
             
-            DOC
+            CHAPTER
             puts which_chapter.colorize(:light_blue)
             input = gets.strip.downcase
             if input == "exit"
@@ -135,7 +135,7 @@ class Wot::CLI
     end
 
     def goodbye 
-        bye = <<-'EOF'
+        bye = <<-'BYE'
                          _   _                          
                         | | | | __ _ _ __  _ __  _   _  
                         | |_| |/ _` | '_ \| '_ \| | | | 
@@ -148,7 +148,7 @@ class Wot::CLI
                     |  _ <  __/ (_| | (_| | | | | | (_| |_|_|
                     |_| \_\___|\__,_|\__,_|_|_| |_|\__, (_|_)
                                                    |___/     
-        EOF
+        BYE
         puts bye.colorize(:blue)
     end
 
