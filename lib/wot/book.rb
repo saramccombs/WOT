@@ -57,10 +57,4 @@ class Wot::Book
         self.all[number]
     end
 
-    def self.number_of_chapters
-    end
-
 end
-
-# check if summary[ch number-1] == nil, if true -> scrape and shovel into array, if false -> output 
-# ||= look into using this for the above code
