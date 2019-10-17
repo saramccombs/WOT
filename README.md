@@ -2,6 +2,9 @@
 
 Welcome!! This CLI Ruby Gem provides chapter summaries for each of the books within Robert Jordan's Wheel of Time series.
 
+# Demo Video
+COMING SOON! 
+
 ## Installation
 
 Add this line to your application's Gemfile:
