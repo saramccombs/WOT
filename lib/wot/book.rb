@@ -57,4 +57,11 @@ class Wot::Book
         self.all[number]
     end
 
+    # method that returns list of books in ABC order
+    # def self.books_ordered
+    #     Wot::CLI.new.call
+    #     test = @@all.sort_by {|book| book.name}
+    #     binding.pry
+    # end
+
 end

@@ -1,13 +1,26 @@
 class Wot::CLI 
 
-    attr_accessor :books
+    # attr_accessor :books
+    # remove, remenant from previous versions... not needed
 
     def call
+        please_wait
         Wot::Scraper.get_book_titles
         Wot::Scraper.make_books
         welcome
         book_menu
         goodbye
+    end
+
+    def please_wait
+        msg =<<~'MSG' 
+
+        
+        Please wait while content is loaded...
+
+
+        MSG
+        puts msg.colorize(:yellow)
     end
 
     def welcome 
