@@ -48,8 +48,6 @@ class Wot::CLI
         This CLI Ruby gem provides a listing of chapters belonging to
         each book within the series, as well as chapter summaries.
 
-        Please wait a moment to load the list of books.
-
         DOC
     end
 
