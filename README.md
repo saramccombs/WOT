@@ -3,7 +3,7 @@
 Welcome!! This CLI Ruby Gem provides chapter summaries for each of the books within Robert Jordan's Wheel of Time series.
 
 ## Demo Video
-COMING SOON! 
+[YouTube: Flatiron School 8/12 Cohort "Show and Tell"](https://youtu.be/VPkoLtzMnlU)
 
 ## Installation
 
